@@ -3,6 +3,7 @@ import note7 from '../../Assets/sp_note7.png'
 import vsphone from '../../Assets/vsphone.jpg'
 
 
+const themSP = localStorage.getItem("themSP") ? JSON.parse(localStorage.getItem("themSP")):[];
 const initialState={
     sanPham:[
         { "maSP": 1, "tenSP": "VinSmart Live", "manHinh": "AMOLED, 6.2, Full HD+", "heDieuHanh": "Android 9.0 (Pie)", "cameraTruoc": "20 MP", "cameraSau": "Chính 48 MP & Phụ 8 MP, 5 MP", "ram": "4 GB", "rom": "64 GB", "giaBan": 5700000, "hinhAnh": vsphone },
@@ -10,7 +11,7 @@ const initialState={
         { "maSP": 3, "tenSP": "Iphone XS Max", "manHinh": "OLED, 6.5, 1242 x 2688 Pixels", "heDieuHanh": "iOS 12", "cameraSau": "Chính 12 MP & Phụ 12 MP", "cameraTruoc": "7 MP", "ram": "4 GB", "rom": "64 GB", "giaBan": 27000000, "hinhAnh": iphone }  
     ],
     sanPhamChiTiet:{},
-    themSP:[],
+    themSP,
         
 }
 
@@ -25,9 +26,11 @@ function gioHangReducer(state=initialState,action){
             if(index!==-1){
                 state.themSP[index].soLuong+=1
                 // state.themSP[index].giaBan=state.themSP[index].soLuong*state.themSP[index].giaBan
+                localStorage.setItem("themSP",JSON.stringify(state.themSP));
             }
             else{
                 state.themSP.push(action.payload)
+                localStorage.setItem("themSP",JSON.stringify(state.themSP));
             }
             state.themSP=[...state.themSP]
             
@@ -39,7 +42,9 @@ function gioHangReducer(state=initialState,action){
                 state.themSP[index].soLuong-=1
                 if(state.themSP[index].soLuong<=0){
                     state.themSP[index].soLuong=0   
+                    localStorage.setItem("themSP",JSON.stringify(state.themSP));
                 }
+                localStorage.setItem("themSP",JSON.stringify(state.themSP));
             }
             state.themSP=[...state.themSP]
             return {...state}
@@ -47,7 +52,8 @@ function gioHangReducer(state=initialState,action){
         case "TANG_SP":{
             const index = state.themSP.findIndex(item=>item.maSP===action.payload.maSP)
             if(index!==-1){
-                state.themSP[index].soLuong+=1      
+                state.themSP[index].soLuong+=1  
+                localStorage.setItem("themSP",JSON.stringify(state.themSP));    
             }
             state.themSP=[...state.themSP]
             return {...state}
