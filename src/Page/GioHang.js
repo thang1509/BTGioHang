@@ -2,6 +2,7 @@ import React from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import  './index.scss'
 export default function GioHang() {
+    document.title="Gio Hang"
     const {sanPham,sanPhamChiTiet,themSP} = useSelector((state)=>state.giohang)
     const dispatch = useDispatch()
     const handleChangeSP=(item)=>{
@@ -24,7 +25,12 @@ export default function GioHang() {
         <div className="giohang">
   {/* Button trigger modal */}
   <button type="button" className="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
-    Gio hang <i className="fa fa-shopping-cart"></i>
+    Gio hang <i className="fa fa-shopping-cart"> (<span>{themSP.reduce((tongDon,item,index)=>{
+        if(item===false){
+            return tongDon = 0
+        }
+        return tongDon += item.soLuong
+    },0).toLocaleString()}</span>)</i>
   </button>
   {/* Modal */}
   <div className="modal fade" id="modelId" tabIndex={-1} role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
@@ -76,6 +82,7 @@ export default function GioHang() {
               )
           })}    
                 </tbody>
+               
             </table>
         </div>
         <div className="modal-footer">
