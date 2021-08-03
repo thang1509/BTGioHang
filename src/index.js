@@ -13,7 +13,7 @@ const middleware = applyMiddleware(thunk);
 const enhancer = compose(
   middleware, // middleware
   // redux devtools
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 const store = createStore(RootReducer,enhancer);
 
