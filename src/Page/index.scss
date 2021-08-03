@@ -1,0 +1,11 @@
+.giohang{
+    .btnDiss{
+       &:focus{
+           box-shadow: none;
+       }
+       cursor: no-drop;
+    }
+    .modal-dialog{
+        max-width: 600px;
+    }
+}
