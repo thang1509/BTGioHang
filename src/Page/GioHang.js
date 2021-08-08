@@ -82,6 +82,24 @@ export default function GioHang() {
               )
           })}    
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Tổng đơn:</td>
+                        <td>{themSP.reduce((tongGia,item,index)=>{
+                            if(item===false){
+                                return tongGia=0
+                            }
+                            
+                            return tongGia += item.giaBan*item.soLuong
+                            
+                        },0).toLocaleString()}</td>
+                        
+                       
+                    </tr>
+                </tfoot>
                
             </table>
         </div>
